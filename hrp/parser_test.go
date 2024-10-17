@@ -13,15 +13,15 @@ func TestBuildURL(t *testing.T) {
 	var preparedURL *url.URL
 
 	preparedURL = buildURL("https://postman-echo.com", "/get", nil)
-	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get/") {
+	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get") {
 		t.Fatal()
 	}
 	preparedURL = buildURL("https://postman-echo.com", "get", nil)
-	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get/") {
+	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get") {
 		t.Fatal()
 	}
 	preparedURL = buildURL("https://postman-echo.com/", "/get", nil)
-	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get/") {
+	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get") {
 		t.Fatal()
 	}
 
@@ -41,29 +41,29 @@ func TestBuildURL(t *testing.T) {
 	}
 
 	preparedURL = buildURL("", "https://postman-echo.com/get", nil)
-	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get/") {
+	if !assert.Equal(t, preparedURL.String(), "https://postman-echo.com/get") {
 		t.Fatal()
 	}
 
 	// notice: step request url > config base url
 	preparedURL = buildURL("https://postman-echo.com", "https://httpbin.org/get", nil)
-	if !assert.Equal(t, preparedURL.String(), "https://httpbin.org/get/") {
+	if !assert.Equal(t, preparedURL.String(), "https://httpbin.org/get") {
 		t.Fatal()
 	}
 
 	// websocket url
 	preparedURL = buildURL("wss://ws.postman-echo.com/raw", "", nil)
-	if !assert.Equal(t, preparedURL.String(), "wss://ws.postman-echo.com/raw/") {
+	if !assert.Equal(t, preparedURL.String(), "wss://ws.postman-echo.com/raw") {
 		t.Fatal()
 	}
 
 	preparedURL = buildURL("wss://ws.postman-echo.com", "/raw", nil)
-	if !assert.Equal(t, preparedURL.String(), "wss://ws.postman-echo.com/raw/") {
+	if !assert.Equal(t, preparedURL.String(), "wss://ws.postman-echo.com/raw") {
 		t.Fatal()
 	}
 
 	preparedURL = buildURL("wss://ws.postman-echo.com/raw", "ws://echo.websocket.events", nil)
-	if !assert.Equal(t, preparedURL.String(), "ws://echo.websocket.events/") {
+	if !assert.Equal(t, preparedURL.String(), "ws://echo.websocket.events") {
 		t.Fatal()
 	}
 
